@@ -9,10 +9,47 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var responseField: UILabel!
+    
+    @IBOutlet weak var userNumber: UITextField!
+    
+    @IBAction func buttonPressed(_ sender: Any) {
+        
+        var isPrime = true
+        let number = Int(userNumber.text!)
+        var i = 2
+        
+        if number == 1 {
+            isPrime = false
+            responseField.text = "Nope \("number") has more than itself and the number one as factors"
+        }
+        
+        while i < number! {
+            
+            if number! % i == 0 {
+                isPrime = false
+                responseField.text = "Nope \("number") has more than itself and the number one as factors"
+            } else {
+                responseField.text = "Yes. \("number") is a prime number!"
+            }
+            
+            i += 1
+            
+        }
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
