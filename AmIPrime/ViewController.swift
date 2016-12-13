@@ -16,37 +16,54 @@ class ViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: Any) {
         
-        var isPrime = true
-        let number = Int(userNumber.text!)
-        var i = 2
-        
-        if number == 1 {
-            isPrime = false
-            responseField.text = "Nope \("number") has more than itself and the number one as factors"
-        }
-        
-        while i < number! {
+        if let userEnteredString = userNumber.text {
             
-            if number! % i == 0 {
-                isPrime = false
-                responseField.text = "Nope \("number") has more than itself and the number one as factors"
+            let userEnteredInteger = Int(userEnteredString)
+            
+            if let number = userEnteredInteger {
+                
+                var isPrime = true
+                
+                if number == 1 {
+                    isPrime = false
+                }
+                
+                var i = 2
+                
+                while i < number {
+                    
+                    if number % i == 0 {
+                        
+                        isPrime = false
+                        
+                    }
+                    
+                    i += 1
+                    
+                }
+                
+                if isPrime {
+                    responseField.isHidden = false
+                    responseField.text = "Yep. \(number) is a prime number, because it has only itself and the number 1 as factors."
+                } else {
+                    responseField.isHidden = false
+                    responseField.text = "Nope. \(number) has more than itself and the number one as factors so it is not prime number."
+                }
+                
             } else {
-                responseField.text = "Yes. \("number") is a prime number!"
+                responseField.isHidden = false
+                responseField.text = "Please enter a positive whole number"
+                
             }
             
-            i += 1
-            
         }
+        
     
     }
     
     
     
-    
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
